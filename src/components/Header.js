@@ -16,7 +16,7 @@ class Header extends Component {
           <option value="advice-how-to-and-miscellaneous">Nonfiction: Advice, How-To, & Miscellaneous</option>
           <option value="childrens-middle-grade-hardcover">Children's Middle Grade Hardcover</option>
           <option value="picture-books">Children's Picture Books</option>
-          <option value="childrens-series">Children's Series</option>
+          <option value="series-books">Children's Series</option>
           <option value="young-adult-hardcover">Young Adult Hardcover</option>
           <option value="audio-fiction">Monthly: Audio Fiction</option>
           <option value="audio-nonfiction">Monthly: Audio Nonfiction</option>

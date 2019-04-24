@@ -12,7 +12,8 @@ class App extends Component {
     super(props);
     this.state = {
       list: [],
-      selected: ''
+      selected: '',
+      duplicate: []
     }
     this.handleChoice = this.handleChoice.bind(this);
     this.fetchList = this.fetchList.bind(this);
@@ -22,9 +23,11 @@ class App extends Component {
   async handleChoice(e) {
     console.log(e.target.value);
     await this.setState({
-      selected: e.target.value
+      selected: e.target.value,
+      duplicate: []
     })
     await this.fetchList(this.state.selected);
+    await this.getInfo();
   }
 
   async fetchList(select) {
@@ -42,23 +45,27 @@ class App extends Component {
     try {
       const { list } = this.state;
       console.log('got', this.state.list)
-      list.map(async book => {
+      list.map(async (book, index) => {
         let goodreadsApiKey = process.env.REACT_APP_GOODREADS_API_KEY;
         let isbn = book.book_details[0].primary_isbn13;
-        if (book.isbns[0]) {
-          isbn = book.isbns[0].isbn;
+        if (book.isbns[0] && book.isbns[0].isbn10) {
+          isbn = book.isbns[0].isbn10;
+        }
           const fetchInfo = await axios.get(`https://www.goodreads.com/search/index.xml?key=${goodreadsApiKey}&q=${isbn}`, {Accept: 'application/json'})
           convert.xmlDataToJSON(fetchInfo.data)
-            .then((data) => {
+            .then(async (data) => {
+              console.log(data);
               let result = data.GoodreadsResponse.search[0].results[0].work[0];
-              book.cover = result.best_book[0].image_url[0];
-              book.rating = result.average_rating[0];
-              book.count = result.ratings_count[0];
+              const clone = {...book};
+              clone.cover = result.best_book[0].image_url[0];
+              clone.rating = result.average_rating[0];
+              clone.count = result.ratings_count[0];
+              this.state.duplicate.push(clone);
+              await this.setState({
+                list: this.state.duplicate
+              });
             })
-        } else {
-          console.log(`how about no`);
-        }
-        return list;
+            .catch(error => console.log(error))
       })
     }
     catch (err) {
@@ -67,12 +74,21 @@ class App extends Component {
   }
 
   renderBooks() {
-    this.getInfo();
-    return this.state.list.map((item, index) => {
+    if (this.state.duplicate.length > 0) {
       return (
-        <List book={item} key={index} rating={item.rating} cover={item.cover}/>
+        this.state.duplicate.map((item, index) => {
+          return (
+            <List book={item} key={index} />
+          )
+        })
       )
-    })
+    } else {
+      this.state.list.map((item, index) => {
+        return (
+          <List book={item} key={index} />
+        )
+      })
+    }
   }
 
   render() {
