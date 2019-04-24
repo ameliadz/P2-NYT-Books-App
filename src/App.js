@@ -38,7 +38,7 @@ class App extends Component {
       .catch(error => console.log('There was a problem fetching your data. Please try again.', error));
   }
 
-  getInfo = async () => {
+  async getInfo () {
     try {
       const { list } = this.state;
       console.log('got', this.state.list)
@@ -51,7 +51,6 @@ class App extends Component {
           convert.xmlDataToJSON(fetchInfo.data)
             .then((data) => {
               let result = data.GoodreadsResponse.search[0].results[0].work[0];
-              console.log(result)
               book.cover = result.best_book[0].image_url[0];
               book.rating = result.average_rating[0];
               book.count = result.ratings_count[0];
@@ -59,6 +58,7 @@ class App extends Component {
         } else {
           console.log(`how about no`);
         }
+        return list;
       })
     }
     catch (err) {
@@ -70,7 +70,7 @@ class App extends Component {
     this.getInfo();
     return this.state.list.map((item, index) => {
       return (
-        <List book={item} key={index}/>
+        <List book={item} key={index} rating={item.rating} cover={item.cover}/>
       )
     })
   }

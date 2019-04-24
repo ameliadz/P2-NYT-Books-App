@@ -5,7 +5,8 @@ class List extends Component {
   render() {
     const { book } = this.props;
     console.log(book);
-    console.log('cover', book.cover)
+    console.log('cover', this.props.cover)
+    console.log('count', book.rating)
     return (
       <div className="book">
         <p><span>{book.book_details[0].title}</span> {book.book_details[0].contributor}</p>
