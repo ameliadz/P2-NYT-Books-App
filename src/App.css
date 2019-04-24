@@ -1,16 +1,25 @@
 body {
   text-align: center;
   margin: 10px;
-  background-color: #fffefc;
+  background-color: #f9f8f6;
 }
 
 header {
   margin-bottom: 30px;
-  font-family: serif;
+  font-family: Georgia, serif;
+}
+
+.headings > h1, h3 {
+  margin: 8px;
+}
+
+.headings {
+  margin: 20px;
 }
 
 select {
   background-color: white;
+  font-family: Arial, sans-serif;
 }
 
 .no-image {
@@ -19,15 +28,37 @@ select {
   border: 2px solid black;
 }
 
-.book {
+.list, .fifteen {
+  width: 95vw;
+  margin: 0 auto;
   display: grid;
-  grid-template-columns: 200px 1fr;
+  grid-template-columns: repeat(3, auto);
   grid-template-rows: auto;
-  margin: 10px auto;
-  width: 60vw;
+  border-left: 2px solid black;
+  border-right: 2px solid black;
+  grid-column-gap: 1px;
+  background-color: black;
+}
+
+.ten {
+  grid-template-columns: repeat(2, auto);
+}
+
+.book {
+  background-color: #f9f8f6;
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  grid-template-rows: auto;
+  margin: 0 auto;
+  padding: 10px;
+  width: 30vw;
   text-align: left;
   justify-content: center;
   align-items: center;
+}
+
+.ten > .book {
+  width: 45.8vw;
 }
 
 .cover {
@@ -36,11 +67,34 @@ select {
   margin: 0 auto;
 }
 
-.book p {
-  margin-top: 10px;
+p {
+  margin: 5px;
+  font-family: Arial, sans-serif;
+  font-size: 0.9rem;
 }
 
-.book span {
+.title {
+  font-family: Georgia, serif;
   font-weight: bold;
-  font-size: 1.3em;
+  font-size: 1.4rem;
+}
+
+.author {
+  font-size: 1rem;
+  font-family: Georgia, serif;
+}
+
+@media (max-width: 1024px) {
+  .list {
+    display: grid;
+    grid-template-columns: 1fr;
+    background-color: #f9f8f6;
+    grid-gap: 0;
+    border: none;
+  }
+  .book {
+    width: 90vw;
+    border: 2px solid black;
+    margin: 5px auto;
+  }
 }

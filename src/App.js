@@ -43,7 +43,7 @@ class App extends Component {
   async getInfo () {
     try {
       const { list } = this.state;
-      console.log('got', this.state.list)
+      console.log('got', list)
       list.map(async (book, index) => {
         let goodreadsApiKey = process.env.REACT_APP_GOODREADS_API_KEY;
         let isbn = book.book_details[0].primary_isbn13;
@@ -54,12 +54,16 @@ class App extends Component {
           convert.xmlDataToJSON(fetchInfo.data)
             .then(async (data) => {
               console.log(data);
-              let result = data.GoodreadsResponse.search[0].results[0].work[0];
-              const clone = {...book};
-              clone.cover = result.best_book[0].image_url[0];
-              clone.rating = result.average_rating[0];
-              clone.count = result.ratings_count[0];
-              this.state.duplicate.push(clone);
+              if (!data.GoodreadsResponse.search[0].results[0].work) {
+                this.state.duplicate.push(book);
+              } else {
+                let result = data.GoodreadsResponse.search[0].results[0].work[0];
+                const clone = {...book};
+                clone.cover = result.best_book[0].image_url[0];
+                clone.rating = result.average_rating[0];
+                clone.count = result.ratings_count[0];
+                this.state.duplicate.push(clone);
+              }
               await this.setState({
                 list: this.state.duplicate
               });
@@ -73,20 +77,22 @@ class App extends Component {
   }
 
   renderBooks() {
+    const { selected } = this.state;
+    let isWeekly = !((selected === "audio-fiction") || (selected === "audio-nonfiction") || (selected === "business-books") || (selected === "science") || (selected === "music") );
     const { duplicate } = this.state;
     if (duplicate.length > 0) {
       return (
         this.state.list.sort((a,b) => a.rank - b.rank)
         .map((item, index) => {
           return (
-            <List book={item} key={index} />
+            <List book={item} key={index} weekly={isWeekly} />
           )
         })
       )
     } else {
       this.state.list.map((item, index) => {
         return (
-          <List book={item} key={index} />
+          <List book={item} key={index} weekly={isWeekly} />
         )
       })
     }
@@ -96,7 +102,8 @@ class App extends Component {
     return (
       <div>
         <Header select={this.handleChoice}/>
-        {this.renderBooks()}
+        {this.state.list.length ?
+          this.state.list.length === 10 ? <div className="list ten">{this.renderBooks()}</div> : <div className="list fifteen">{this.renderBooks()}</div>  : <h2>Loading...</h2>}
       </div>
     );
   }
