@@ -4,7 +4,8 @@ class Header extends Component {
   render() {
     return (
       <header>
-        <h1>PEOPLE LIKE THESE BOOKS (According to the New York Times)</h1>
+        <h1>NEW YORK TIMES BESTSELLERS</h1>
+        <h3>(and whether Goodreads readers actually like them)</h3>
         <select onChange={this.props.select}>
           <option value="">SELECT LIST</option>
           <option value="combined-print-and-e-book-fiction">Combined Print & E-Book Fiction</option>

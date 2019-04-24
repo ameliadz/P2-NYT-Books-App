@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import convert from 'xml-to-json-promise';
 import './App.css';
-//import { Route, Link } from 'react-router-dom';
 import axios from 'axios'
 
 import Header from './components/Header';
@@ -48,7 +47,7 @@ class App extends Component {
       list.map(async (book, index) => {
         let goodreadsApiKey = process.env.REACT_APP_GOODREADS_API_KEY;
         let isbn = book.book_details[0].primary_isbn13;
-        if (book.isbns[0] && book.isbns[0].isbn10) {
+        if (book.isbns[0] && book.isbns[0].isbn10 && book.isbns[0].isbn10 !== 'None') {
           isbn = book.isbns[0].isbn10;
         }
           const fetchInfo = await axios.get(`https://www.goodreads.com/search/index.xml?key=${goodreadsApiKey}&q=${isbn}`, {Accept: 'application/json'})
@@ -74,9 +73,11 @@ class App extends Component {
   }
 
   renderBooks() {
-    if (this.state.duplicate.length > 0) {
+    const { duplicate } = this.state;
+    if (duplicate.length > 0) {
       return (
-        this.state.duplicate.map((item, index) => {
+        this.state.list.sort((a,b) => a.rank - b.rank)
+        .map((item, index) => {
           return (
             <List book={item} key={index} />
           )
