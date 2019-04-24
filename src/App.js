@@ -30,6 +30,9 @@ class App extends Component {
   }
 
   async fetchList(select) {
+    this.setState({
+      list: []
+    });
     let apiKey = process.env.REACT_APP_NYT_BOOKS_API_KEY;
     await axios.get(`https://api.nytimes.com/svc/books/v3/lists.json?list=${select}&api-key=${apiKey}`, {Accept: 'application/json'})
       .then(response => response.data)
