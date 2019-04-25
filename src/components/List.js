@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 class List extends Component {
   render() {
     const { book } = this.props;
-    console.log(book);
     return (
       <div className="book">
         <p><span className="title">{book.book_details[0].title}</span><br /><span className="author"> {book.book_details[0].contributor}</span></p>
