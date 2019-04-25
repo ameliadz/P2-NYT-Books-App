@@ -32,6 +32,7 @@ header {
 h1 {
   font-size: 30pt;
   padding-top: 20px;
+  letter-spacing: 0.03rem;
 }
 
 h3 {
@@ -140,7 +141,7 @@ footer {
   .book {
     width: 90vw;
     border: 2px solid black;
-    margin: 5px auto;
+    margin: 7px auto;
   }
 }
 
