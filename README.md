@@ -6,13 +6,29 @@
 Gets Bestseller list data from the New York Times Books API and uses it to get Goodreads data. These books are currently bestsellers, but do people actually enjoy reading them?
 
 ### Tech
-This app will use React and Axios. I'll get data via axios get requests to the NYT Books API and, based on that, source additional information and resources from the Goodreads API.
+This app will use React and Axios and be styled with CSS. I'll get data via axios GET requests to the NYT Books API and, based on that, source additional information and resources from the Goodreads API.
 
 ### Wireframes
-![image1](https://user-images.githubusercontent.com/47397924/56440892-fb3b9000-62b8-11e9-9bfe-552b1d6a3ebc.jpeg)
+![wireframe](https://user-images.githubusercontent.com/47397924/56769005-f6298580-677d-11e9-8c6e-d8f5beb56786.jpeg)
+<br />
+Result:
+![Screen Shot 2019-04-25 at 5 29 02 PM](https://user-images.githubusercontent.com/47397924/56769613-ba8fbb00-677f-11e9-9eb1-a07fc0022775.png)
 
 ### Component Hierarchy
-Approximately - <br />
-App --> Header<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;List<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Footer
+![hierarchy](https://user-images.githubusercontent.com/47397924/56769016-fde92a00-677d-11e9-8067-37fea2290f07.jpeg)
+
+### Minimum Viable Product
+- At minimum, this app will fetch current NYT bestseller lists, then use that information to get additional information (cover art and ratings) from Goodreads, and render the books on the list to the page.
+- Also hopefully it'll look nice.
+
+### External Resources
+A post on the Goodreads developers forum helped me figure out how to manage the consistent CORS error by providing a header and routing through a cors-anywhere heroku app.
+
+### Code Snippets
+![Screen Shot 2019-04-25 at 5 31 19 PM](https://user-images.githubusercontent.com/47397924/56769703-ff1b5680-677f-11e9-819d-d9deb3bcb3ad.png)
+^ the super annoying process of trying to parse the Goodreads data and have it update the objects in the book list array, and handle all the weird inconsistencies in ISBNs and response structures.
+
+<hr />
+
+### Post-MVP
+- May add ability to save a book to a favorites list or wishlist using local storage and React Router. This idea came to me about 2 hours before the project was due, so... next time.
