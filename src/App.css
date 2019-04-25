@@ -1,25 +1,38 @@
 body {
   text-align: center;
-  margin: 10px;
-  background-color: #f9f8f6;
+  background-color: #f4f4f4;
 }
 
 header {
-  margin-bottom: 30px;
+  border-bottom: 2px solid black;
   font-family: Georgia, serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0 50px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+h1 {
+  font-size: 30pt;
+  padding-top: 20px;
 }
 
 .headings > h1, h3 {
-  margin: 8px;
+  margin: 0 8px 8px 8px;
 }
 
 .headings {
-  margin: 20px;
+  margin: 0 15px 15px 15px;
 }
 
 select {
+  height: 1.5rem;
   background-color: white;
   font-family: Arial, sans-serif;
+  font-size: 8.5pt;
+  letter-spacing: 0.03rem;
 }
 
 .list, .fifteen {
@@ -39,7 +52,7 @@ select {
 }
 
 .book {
-  background-color: #f9f8f6;
+  background-color: #f5f4f2;
   display: grid;
   grid-template-columns: 140px 1fr;
   grid-template-rows: auto;
@@ -85,11 +98,26 @@ p {
   font-family: Georgia, serif;
 }
 
+@media (max-width: 1280px) {
+  .list {
+    border: none;
+  }
+}
+
 @media (max-width: 1024px) {
+  h1 {
+    font-size: 25pt;
+  }
+
+  header {
+    display: block;
+    padding-bottom: 25px;
+  }
+
   .list {
     display: grid;
     grid-template-columns: 1fr;
-    background-color: #f9f8f6;
+    background-color: #f5f4f2;
     grid-gap: 0;
     border: none;
   }
@@ -97,5 +125,11 @@ p {
     width: 90vw;
     border: 2px solid black;
     margin: 5px auto;
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    padding: 0 0 25px 0;
   }
 }

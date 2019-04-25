@@ -47,13 +47,14 @@ class App extends Component {
     try {
       const { list } = this.state;
       console.log('got', list)
+      let config = {headers: {"X-Requested-With" : "XMLHttpRequest"}};
       list.map(async (book, index) => {
         let goodreadsApiKey = process.env.REACT_APP_GOODREADS_API_KEY;
         let isbn = book.book_details[0].primary_isbn13;
         if (book.isbns[0] && book.isbns[0].isbn10 && book.isbns[0].isbn10 !== 'None') {
           isbn = book.isbns[0].isbn10;
         }
-          const fetchInfo = await axios.get(`https://www.goodreads.com/search/index.xml?key=${goodreadsApiKey}&q=${isbn}`, {Accept: 'application/json'})
+          const fetchInfo = await axios.get(`https://cors-anywhere.herokuapp.com/https://www.goodreads.com/search/index.xml?key=${goodreadsApiKey}&q=${isbn}`, config)
           convert.xmlDataToJSON(fetchInfo.data)
             .then(async (data) => {
               console.log(data);
@@ -105,8 +106,10 @@ class App extends Component {
     return (
       <div>
         <Header select={this.handleChoice}/>
-        {this.state.list.length ?
+        <div className="main">
+          {this.state.list.length ?
           this.state.list.length === 10 ? <div className="list ten">{this.renderBooks()}</div> : <div className="list fifteen">{this.renderBooks()}</div>  : <h2>Loading...</h2>}
+        </div>
       </div>
     );
   }
