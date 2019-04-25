@@ -68,7 +68,11 @@ class App extends Component {
               let result = data.GoodreadsResponse.search[0].results[0].work[0];
               const clone = {...book};
               clone.cover = result.best_book[0].image_url[0];
-              clone.rating = result.average_rating[0];
+              if (typeof result.average_rating[0] === 'object') {
+                clone.rating = result.average_rating[0]._;
+              } else {
+                clone.rating = result.average_rating[0];
+              }
               clone.count = result.ratings_count[0];
               this.state.duplicate.push(clone);
             }
@@ -77,7 +81,7 @@ class App extends Component {
             });
           })
           .catch(error => {
-            this.setState({
+            this.setState ({
               error: `${error} -- Could not connect to Goodreads.`
             })
           })
