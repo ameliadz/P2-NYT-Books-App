@@ -3,6 +3,13 @@ body {
   background-color: #f4f4f4;
 }
 
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  justify-content: space-between;
+}
+
 header {
   border-bottom: 2px solid black;
   font-family: Georgia, serif;
@@ -14,17 +21,21 @@ header {
   align-items: center;
 }
 
-h1 {
-  font-size: 30pt;
-  padding-top: 20px;
-}
-
 .headings > h1, h3 {
   margin: 0 8px 8px 8px;
 }
 
 .headings {
   margin: 0 15px 15px 15px;
+}
+
+h1 {
+  font-size: 30pt;
+  padding-top: 20px;
+}
+
+h3 {
+  font-weight: normal;
 }
 
 select {
@@ -96,6 +107,11 @@ p {
 .author {
   font-size: 1rem;
   font-family: Georgia, serif;
+}
+
+footer {
+  height: 40px;
+  border-top: 2px solid black;
 }
 
 @media (max-width: 1280px) {
