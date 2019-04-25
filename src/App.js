@@ -14,7 +14,8 @@ class App extends Component {
       list: [],
       selected: '',
       duplicate: [],
-      error: null
+      error: null,
+      loading: false
     }
     this.handleChoice = this.handleChoice.bind(this);
     this.fetchList = this.fetchList.bind(this);
@@ -24,7 +25,8 @@ class App extends Component {
   async handleChoice(e) {
     await this.setState({
       selected: e.target.value,
-      duplicate: []
+      duplicate: [],
+      loading: true
     })
     await this.fetchList(this.state.selected);
     await this.getInfo();
@@ -96,7 +98,7 @@ class App extends Component {
 
   renderBooks() {
     const { selected } = this.state;
-    let isWeekly = !((selected === "audio-fiction") || (selected === "audio-nonfiction") || (selected === "business-books") || (selected === "science") || (selected === "music") );
+    let isWeekly = !((selected === "audio-fiction") || (selected === "audio-nonfiction") || (selected === "business-books") || (selected === "science") || (selected === "sports") );
     return (
       this.state.list.sort((a,b) => a.rank - b.rank)
       .map((item, index) => {
@@ -113,7 +115,7 @@ class App extends Component {
         <Header select={this.handleChoice}/>
         {this.state.error ? this.state.error :
         this.state.list.length ?
-        this.state.list.length === 10 ? <div className="list ten">{this.renderBooks()}</div> : <div className="list fifteen">{this.renderBooks()}</div>  : <h2>Loading...</h2>}
+        this.state.list.length === 10 ? <div className="list ten">{this.renderBooks()}</div> : <div className="list fifteen">{this.renderBooks()}</div>  : this.state.loading ? <h2>Loading...</h2> : <h2>Select a list</h2>}
         <Footer />
       </div>
     );
