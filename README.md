@@ -25,7 +25,7 @@ Result:
 A post on the Goodreads developers forum helped me figure out how to manage the consistent CORS error by providing a header and routing through a cors-anywhere heroku app.
 
 ### Code Snippets
-![Screen Shot 2019-04-25 at 5 31 19 PM](https://user-images.githubusercontent.com/47397924/56769703-ff1b5680-677f-11e9-819d-d9deb3bcb3ad.png)
+![Screen Shot 2019-04-25 at 5 31 19 PM](https://user-images.githubusercontent.com/47397924/56769703-ff1b5680-677f-11e9-819d-d9deb3bcb3ad.png)<br />
 ^ the super annoying process of trying to parse the Goodreads data and have it update the objects in the book list array, and handle all the weird inconsistencies in ISBNs and response structures.
 
 <hr />
