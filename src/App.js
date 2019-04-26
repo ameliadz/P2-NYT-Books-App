@@ -23,11 +23,19 @@ class App extends Component {
   }
 
   async handleChoice(e) {
-    await this.setState({
-      selected: e.target.value,
-      duplicate: [],
-      loading: true
-    })
+    if (e.target.value === "") {
+      await this.setState({
+        selected: e.target.value,
+        duplicate: [],
+        loading: false
+      });
+    } else {
+      await this.setState({
+        selected: e.target.value,
+        duplicate: [],
+        loading: true
+      });
+    };
     await this.fetchList(this.state.selected);
     await this.getInfo();
   }
