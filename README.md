@@ -3,6 +3,7 @@
 ### NYT Books App: NYT BOOKS N STUFF
 
 ### Summary
+DEPLOYED AT: https://adz-bestselling-books.herokuapp.com/
 Gets Bestseller list data from the New York Times Books API and uses it to get Goodreads data. These books are currently bestsellers, but do people actually enjoy reading them?
 
 ### Tech
