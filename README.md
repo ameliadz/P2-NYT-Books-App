@@ -2,7 +2,7 @@
 
 ### Summary
 DEPLOYED AT: https://adz-bestselling-books.herokuapp.com/<br />
-Gets Bestseller list data from the New York Times Books API and uses it to get Goodreads data. These books are currently bestsellers, but do people actually enjoy reading them?
+Gets up-to-date Best Seller list data from the New York Times Books API and uses it to get Goodreads data. These books are currently bestsellers, but do people actually enjoy reading them?
 
 ### Tech
 This app uses React and Axios and be styled with CSS. Data gotten via axios GET requests to the NYT Books API and, based on that, sourced additional information and resources from the Goodreads API.
@@ -17,8 +17,8 @@ Result:
 ![hierarchy](https://user-images.githubusercontent.com/47397924/56769016-fde92a00-677d-11e9-8067-37fea2290f07.jpeg)
 
 ### Minimum Viable Product
-- This app fetches current NYT bestseller lists, then uses that information to get additional information (cover art and ratings) from Goodreads, and renders the books on the list to the page.
-- Also hopefully it'll look nice.
+- This app fetches current NYT best seller lists, then uses that information to get additional information (cover art and ratings) from Goodreads, and renders the books on the list to the page.
+- Also hopefully it looks nice.
 
 ### External Resources
 A post on the Goodreads developers forum helped me figure out how to manage the consistent CORS error by providing a header and routing through a cors-anywhere heroku app.
@@ -30,4 +30,4 @@ A post on the Goodreads developers forum helped me figure out how to manage the 
 <hr />
 
 ### Post-MVP
-- May add ability to save a book to a favorites list or wishlist using local storage and React Router. This idea came to me about 2 hours before the project was due, so... next time.
+- May add ability to save a book to a favorites list or wishlist using local storage and React Router. This idea came to me about 2 hours before the project was due, so... it's on the to-do list.
