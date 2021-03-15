@@ -1,5 +1,7 @@
 # P2 - NYT Books App: NYT BOOKS N STUFF
 
+*Developer's Note 2021:* Amazon discontinued support for the Goodreads API in late 2020, so unfortunately this project no longer does the task it was intended to. It operates, but doesn't fetch information (and cover art) from Goodreads anymore. RIP this project.
+
 ### Summary
 DEPLOYED AT: https://adz-bestselling-books.herokuapp.com/<br />
 Gets up-to-date Best Seller list data from the New York Times Books API and uses it to get Goodreads data. These books are currently bestsellers, but do people actually enjoy reading them?
